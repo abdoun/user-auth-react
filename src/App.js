@@ -18,10 +18,6 @@ function PrivateRoute({ children, isLoggedIn }) {
   return isLoggedIn ? children : <Navigate to="/login" />;
 }
 
-function PublicRoute({ children, isLoggedIn }) {
-  return !isLoggedIn ? children : <Navigate to="/profile" />;
-}
-
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -50,7 +46,7 @@ export default function App() {
       logout();
       setIsLoggedIn(false);
     }
-  }, []);
+  }, [isLoggedIn]);
 
   function PublicRoute({ children, isLoggedIn }) {
     return !isLoggedIn ? children : <Navigate to="/profile" />;

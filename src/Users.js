@@ -28,11 +28,6 @@ export default function Users() {
       .finally(() => setLoading(false));
   }, [page]);
 
-  function viewProfile(id) {
-    // For example, navigate to /users/:id or open a modal
-    window.location.href = `/profile/${id}`;
-  }
-
   return (
     <div className="container mt-4">
       <h2>Users</h2>
@@ -52,11 +47,7 @@ export default function Users() {
             <tbody>
               {users.length > 0 ? (
                 users.map((user) => (
-                  <tr
-                    key={user.id}
-                    onClick={() => viewProfile(user.id)}
-                    style={{ cursor: 'pointer' }}
-                  >
+                  <tr key={user.id} style={{ cursor: 'pointer' }}>
                     <td>{user.id}</td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>

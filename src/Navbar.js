@@ -1,13 +1,12 @@
-// Navbar.js
-import React from 'react';
+import { logout } from './utils/auth';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function Navbar() {
+export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    logout();
+    setIsLoggedIn(false);
     navigate('/login');
   };
 
@@ -17,7 +16,7 @@ export default function Navbar() {
         MyApp
       </Link>
       <div className="navbar-nav">
-        {!token && (
+        {!isLoggedIn && (
           <>
             <Link className="nav-link" to="/register">
               Register
@@ -27,7 +26,7 @@ export default function Navbar() {
             </Link>
           </>
         )}
-        {token && (
+        {isLoggedIn && (
           <>
             <Link className="nav-link" to="/profile">
               Profile

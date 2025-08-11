@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Register() {
+export default function Register({ setIsLoggedIn }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,6 +28,7 @@ export default function Register() {
 
       const data = await res.json();
       localStorage.setItem('token', data.token);
+      setIsLoggedIn(true);
       navigate('/profile');
     } catch (err) {
       setError(err.message);

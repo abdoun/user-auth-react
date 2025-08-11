@@ -2,18 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        navigate('/login');
-        return;
-      }
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setLoading(false);
+      navigate('/login');
+      return;
+    }
 
+    const fetchProfile = async () => {
       try {
         const res = await fetch('/profile', {
           headers: { Authorization: `Bearer ${token}` },
@@ -21,13 +23,16 @@ export default function Profile() {
         if (!res.ok) {
           setError('Failed to fetch profile. Please login again.');
           localStorage.removeItem('token');
+          setLoading(false); // <-- Add this
           navigate('/login');
           return;
         }
         const data = await res.json();
         setUser(data.user);
+        setLoading(false); // <-- Add this
       } catch {
         setError('Network error.');
+        setLoading(false); // <-- Add this
       }
     };
 
@@ -40,7 +45,8 @@ export default function Profile() {
         <div className="alert alert-danger">{error}</div>
       </div>
     );
-  if (!user) return <div className="container mt-5">Loading profile...</div>;
+  if (loading) return <div>Loading profile...</div>;
+  if (!user) return null;
 
   return (
     <div className="container w-50 mt-5">
@@ -48,15 +54,6 @@ export default function Profile() {
       <p>
         <strong>Email:</strong> {user.email}
       </p>
-      <button
-        className="btn btn-danger"
-        onClick={() => {
-          localStorage.removeItem('token');
-          navigate('/login');
-        }}
-      >
-        Logout
-      </button>
     </div>
   );
 }
