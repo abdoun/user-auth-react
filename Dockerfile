@@ -1,17 +1,18 @@
-FROM node:18-alpine
+FROM node:22-alpine AS build
 
 WORKDIR /app
 
-# Copy package files and install dependencies
 COPY package*.json ./
 RUN npm ci
 
-# Build the React application
 COPY . .
 RUN npm run build
 
-# Expose port 3004
-EXPOSE 3004
+FROM nginx:alpine
 
-# Start the app from production build
-CMD ["npm", "start"]
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

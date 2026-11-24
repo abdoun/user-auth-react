@@ -1,16 +1,20 @@
-version: '3.8'
-
 services:
   user-auth-react:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: user-auth-frontend
+
+    restart: unless-stopped
+
     ports:
-      - "3004:3004"
-    environment:
-      - PORT=3004
-      - HOSTNAME=localhost
-    restart: on-failure
-    healthcheck:
-      test: ["CMD", "npm", "run", "start", "--quiet"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      - "8083:80"
+
+    networks:
+      - user-auth-network
+
+networks:
+  user-auth-network:
+    external: true
+    name: user-auth-node-mysql_user-auth-network
