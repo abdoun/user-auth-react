@@ -12,6 +12,7 @@ import Register from './Register';
 import Login from './Login';
 import Profile from './Profile';
 import Users from './Users';
+import Home from './Home';
 import { logout } from './utils/auth';
 
 function PrivateRoute({ children, isLoggedIn }) {
@@ -56,6 +57,7 @@ export default function App() {
     <Router>
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route
           path="/register"
           element={

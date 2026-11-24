@@ -1,6 +1,6 @@
 # User Auth React
 
-A simple user authentication app built with [Create React App](https://github.com/facebook/create-react-app). This project demonstrates basic user authentication flows in React, with a backend powered by Node.js and MySQL.
+A React frontend sample for user authentication, built with [Create React App](https://github.com/facebook/create-react-app). It demonstrates registration, login, protected routes, and profile access using a Node.js API backed by MySQL.
 
 ## Features
 

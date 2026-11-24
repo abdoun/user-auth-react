@@ -48,7 +48,7 @@ export default function Users() {
               {users.length > 0 ? (
                 users.map((user) => (
                   <tr key={user.id} style={{ cursor: 'pointer' }}>
-                    <td>{user.id}</td>
+                    <td></td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                   </tr>

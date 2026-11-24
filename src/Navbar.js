@@ -13,7 +13,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
   return (
     <nav className="navbar navbar-expand navbar-light bg-light px-4">
       <Link className="navbar-brand" to="/">
-        MyApp
+        User Auth React
       </Link>
       <div className="navbar-nav">
         {!isLoggedIn && (
