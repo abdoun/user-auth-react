@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  user-auth-react:
+    build: .
+    ports:
+      - "3004:3004"
+    environment:
+      - PORT=3004
+      - HOSTNAME=localhost
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "npm", "run", "start", "--quiet"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
