@@ -58,6 +58,29 @@ test('switches to Arabic and lays out the dialog right-to-left', () => {
   expect(getConsent().analytics).toBe(true);
 });
 
+test.each([
+  ['Deutsch', 'de', 'Ihre Privatsphäre ist uns wichtig', 'Alle akzeptieren'],
+  ['Türkçe', 'tr', 'Gizliliğiniz önemli', 'Tümünü kabul et'],
+])(
+  'switches to %s with an LTR layout',
+  (buttonName, code, title, acceptLabel) => {
+    render(<CookieConsent />);
+
+    fireEvent.click(screen.getByRole('button', { name: buttonName }));
+
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toHaveAttribute('lang', code);
+    expect(dialog).toHaveAttribute('dir', 'ltr');
+    expect(
+      within(dialog).getByRole('heading', { name: title })
+    ).toBeInTheDocument();
+    expect(localStorage.getItem('consentLanguage')).toBe(code);
+
+    fireEvent.click(within(dialog).getByRole('button', { name: acceptLabel }));
+    expect(getConsent().marketing).toBe(true);
+  }
+);
+
 test('rejects all optional categories', () => {
   render(<CookieConsent />);
 

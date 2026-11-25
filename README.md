@@ -8,7 +8,7 @@ A React frontend sample for user authentication, built with [Create React App](h
 - Protected routes
 - Basic form validation
 - Responsive UI
-- Bilingual (English/Arabic) privacy & cookie-consent dialog with RTL support
+- Multilingual (English, Arabic, German, Turkish) privacy & cookie-consent dialog, with RTL support for Arabic
 
 ## Backend
 
@@ -57,9 +57,9 @@ npm test
 On the first visit, a consent dialog asks visitors to accept all cookies, reject
 all non-essential categories, or choose per category (analytics, preferences,
 marketing). Strictly necessary storage is always active and cannot be disabled.
-The dialog is available in English and Arabic — switching languages also
-switches the layout to RTL for Arabic — and the choice is remembered in
-`localStorage` under `cookieConsent`. A persistent **Cookie settings** button
+The dialog is available in English, Arabic, German and Turkish — Arabic also
+switches the layout to RTL — and the choice is remembered in `localStorage`
+under `cookieConsent`. A persistent **Cookie settings** button
 lets visitors revisit and change their decision at any time.
 
 The selected language is stored under `consentLanguage`. After any consent

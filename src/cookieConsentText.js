@@ -1,4 +1,12 @@
-export const LANGUAGES = ['en', 'ar'];
+export const LANGUAGES = ['en', 'ar', 'de', 'tr'];
+export const RTL_LANGUAGES = ['ar'];
+
+export const languageNames = {
+  en: 'English',
+  ar: 'العربية',
+  de: 'Deutsch',
+  tr: 'Türkçe',
+};
 
 export const consentText = {
   en: {
@@ -80,6 +88,89 @@ export const consentText = {
         name: 'التسويق',
         description:
           'تُستخدم لعرض محتوى ذي صلة وقياس فعالية الحملات. متوقّفة افتراضيًا.',
+      },
+    ],
+  },
+  de: {
+    title: 'Ihre Privatsphäre ist uns wichtig',
+    settingsTitle: 'Cookie-Einstellungen',
+    intro:
+      'Wir verwenden Cookies und ähnliche Speichermechanismen, um Sie angemeldet zu halten, Ihre Einstellungen zu merken und zu verstehen, wie diese App genutzt wird. Sie entscheiden, was erlaubt ist – unbedingt erforderliche Speicherung ist immer aktiv.',
+    note: 'Sie können Ihre Auswahl jederzeit über die Schaltfläche „Cookie-Einstellungen“ ändern.',
+    languageLabel: 'Sprache wählen',
+    alwaysActive: 'Immer aktiv',
+    allow: 'Erlauben',
+    acceptAll: 'Alle akzeptieren',
+    rejectNonEssential: 'Nicht notwendige ablehnen',
+    customize: 'Anpassen',
+    savePreferences: 'Einstellungen speichern',
+    back: 'Zurück',
+    reopen: 'Cookie-Einstellungen',
+    categories: [
+      {
+        id: 'necessary',
+        name: 'Unbedingt erforderlich',
+        description:
+          'Erforderlich für Anmeldung, Sicherheit und das Merken Ihrer Auswahl. Diese können nicht deaktiviert werden.',
+      },
+      {
+        id: 'analytics',
+        name: 'Analyse',
+        description:
+          'Hilft uns zu sehen, welche Seiten besucht werden, um die App zu verbessern.',
+      },
+      {
+        id: 'preferences',
+        name: 'Einstellungen',
+        description:
+          'Merkt sich Auswahlen wie Sprache und Anzeigeeinstellungen.',
+      },
+      {
+        id: 'marketing',
+        name: 'Marketing',
+        description:
+          'Wird für relevante Inhalte und zur Messung von Kampagnen verwendet. Standardmäßig deaktiviert.',
+      },
+    ],
+  },
+  tr: {
+    title: 'Gizliliğiniz önemli',
+    settingsTitle: 'Çerez tercihleri',
+    intro:
+      'Oturumunuzu açık tutmak, tercihlerinizi hatırlamak ve bu uygulamanın nasıl kullanıldığını anlamak için çerezler ve benzeri depolama yöntemleri kullanıyoruz. Neye izin verileceğine siz karar verirsiniz — kesinlikle gerekli depolama her zaman açıktır.',
+    note: 'Seçiminizi istediğiniz zaman “Çerez ayarları” düğmesiyle değiştirebilirsiniz.',
+    languageLabel: 'Dil seçin',
+    alwaysActive: 'Her zaman açık',
+    allow: 'İzin ver',
+    acceptAll: 'Tümünü kabul et',
+    rejectNonEssential: 'Gereksiz olanları reddet',
+    customize: 'Özelleştir',
+    savePreferences: 'Tercihleri kaydet',
+    back: 'Geri',
+    reopen: 'Çerez ayarları',
+    categories: [
+      {
+        id: 'necessary',
+        name: 'Kesinlikle gerekli',
+        description:
+          'Oturum açma, güvenlik ve çerez tercihinizi hatırlamak için gereklidir. Kapatılamaz.',
+      },
+      {
+        id: 'analytics',
+        name: 'Analiz',
+        description:
+          'Uygulamayı iyileştirmek için hangi sayfaların ziyaret edildiğini görmemize yardımcı olur.',
+      },
+      {
+        id: 'preferences',
+        name: 'Tercihler',
+        description: 'Dil ve görüntü ayarları gibi seçimleri hatırlar.',
+      },
+      {
+        id: 'marketing',
+        name: 'Pazarlama',
+        description:
+          'İlgili içeriği göstermek ve kampanyaları ölçmek için kullanılır. Varsayılan olarak kapalıdır.',
       },
     ],
   },

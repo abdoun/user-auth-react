@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { consentText, LANGUAGES } from './cookieConsentText';
+import {
+  consentText,
+  languageNames,
+  LANGUAGES,
+  RTL_LANGUAGES,
+} from './cookieConsentText';
 import { getConsent, saveConsent } from './utils/consent';
 import './CookieConsent.css';
 
@@ -18,11 +23,9 @@ function detectLanguage() {
     // Storage may be unavailable; fall back to the browser language.
   }
 
-  if (
-    typeof navigator !== 'undefined' &&
-    /^ar([-_]|$)/i.test(navigator.language || '')
-  ) {
-    return 'ar';
+  if (typeof navigator !== 'undefined' && navigator.language) {
+    const browserLanguage = navigator.language.split(/[-_]/)[0].toLowerCase();
+    if (LANGUAGES.includes(browserLanguage)) return browserLanguage;
   }
   return 'en';
 }
@@ -36,7 +39,7 @@ export default function CookieConsent() {
   const dialogRef = useRef(null);
 
   const t = consentText[language];
-  const dir = language === 'ar' ? 'rtl' : 'ltr';
+  const dir = RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
 
   useEffect(() => {
     try {
@@ -143,7 +146,7 @@ export default function CookieConsent() {
                     aria-pressed={language === code}
                     onClick={() => setLanguage(code)}
                   >
-                    {code === 'en' ? 'English' : 'العربية'}
+                    {languageNames[code]}
                   </button>
                 ))}
               </div>
