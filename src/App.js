@@ -13,6 +13,7 @@ import Login from './Login';
 import Profile from './Profile';
 import Users from './Users';
 import Home from './Home';
+import CookieConsent from './CookieConsent';
 import { logout } from './utils/auth';
 
 function PrivateRoute({ children, isLoggedIn }) {
@@ -54,47 +55,50 @@ export default function App() {
   }
 
   return (
-    <Router>
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/register"
-          element={
-            <PublicRoute isLoggedIn={isLoggedIn}>
-              <Register setIsLoggedIn={setIsLoggedIn} />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <PublicRoute isLoggedIn={isLoggedIn}>
-              <Login setIsLoggedIn={setIsLoggedIn} />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <PrivateRoute isLoggedIn={isLoggedIn}>
-              <Profile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/users"
-          element={
-            <PrivateRoute isLoggedIn={isLoggedIn}>
-              <Users />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="*"
-          element={<Navigate to={isLoggedIn ? '/profile' : '/login'} />}
-        />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute isLoggedIn={isLoggedIn}>
+                <Register setIsLoggedIn={setIsLoggedIn} />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute isLoggedIn={isLoggedIn}>
+                <Login setIsLoggedIn={setIsLoggedIn} />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <Users />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="*"
+            element={<Navigate to={isLoggedIn ? '/profile' : '/login'} />}
+          />
+        </Routes>
+      </Router>
+      <CookieConsent />
+    </>
   );
 }
