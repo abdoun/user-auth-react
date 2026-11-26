@@ -1,4 +1,5 @@
 import { jwtDecode } from 'jwt-decode';
+import { clearSharedToken } from './sharedToken';
 
 export function isTokenExpired(token) {
   if (!token) return true;
@@ -14,5 +15,6 @@ export function isTokenExpired(token) {
 
 export function logout() {
   localStorage.removeItem('token');
+  clearSharedToken();
   //window.location.href = '/login';
 }

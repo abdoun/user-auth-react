@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { publishSharedToken } from './utils/sharedToken';
 
 export default function Register({ setIsLoggedIn }) {
   const [name, setName] = useState('');
@@ -29,6 +30,7 @@ export default function Register({ setIsLoggedIn }) {
 
       const data = await res.json();
       localStorage.setItem('token', data.token);
+      publishSharedToken(data.token);
       setIsLoggedIn(true);
       navigate('/profile');
     } catch (err) {

@@ -15,6 +15,11 @@ import Users from './Users';
 import Home from './Home';
 import CookieConsent from './CookieConsent';
 import { logout } from './utils/auth';
+import {
+  isTokenExpired,
+  publishSharedToken,
+  readSharedToken,
+} from './utils/sharedToken';
 
 function PrivateRoute({ children, isLoggedIn }) {
   return isLoggedIn ? children : <Navigate to="/login" />;
@@ -24,7 +29,22 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    let token = localStorage.getItem('token');
+    const shared = readSharedToken();
+
+    // The shared cookie is the session source of truth: it is cleared on
+    // logout in either frontend and expires with the JWT.
+    if (!shared && token) {
+      localStorage.removeItem('token');
+      token = null;
+    }
+
+    // Pick up a token published by the other localhost frontend (port 3002).
+    if (!token && shared && !isTokenExpired(shared)) {
+      token = shared;
+      localStorage.setItem('token', shared);
+    }
+
     if (!token) {
       setIsLoggedIn(false);
       return;
@@ -37,6 +57,7 @@ export default function App() {
         setIsLoggedIn(false);
       } else {
         setIsLoggedIn(true);
+        publishSharedToken(token);
         const timeout = exp * 1000 - Date.now();
         const timer = setTimeout(() => {
           logout();

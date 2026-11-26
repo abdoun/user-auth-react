@@ -15,6 +15,11 @@ A React frontend sample for user authentication, built with [Create React App](h
 This project uses a Node.js/MySQL backend for authentication.  
 See [user-auth-node-mysql](https://github.com/abdoun/user-auth-node-mysql) for backend setup and API documentation.
 
+The JWT is published in a `jwt_token` cookie scoped to `localhost` and shared
+with the authors frontend on `localhost:3002`: logging in at either app signs
+you in to the other, and logging out at either app clears both. Use `localhost`
+rather than `127.0.0.1` for both apps.
+
 - **Frontend runs on:** `http://localhost:3001`
 - **Backend runs on:** `http://localhost:3000`
 - **Proxy:** API requests from React are proxied to the backend on port 3000.

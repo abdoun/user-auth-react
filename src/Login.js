@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { publishSharedToken } from './utils/sharedToken';
 
 export default function Login({ setIsLoggedIn }) {
   const [email, setEmail] = useState('');
@@ -27,6 +28,7 @@ export default function Login({ setIsLoggedIn }) {
 
       const data = await res.json();
       localStorage.setItem('token', data.token);
+      publishSharedToken(data.token);
       setIsLoggedIn(true);
       navigate('/profile');
     } catch (err) {
