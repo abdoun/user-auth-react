@@ -20,8 +20,27 @@ export function isTokenExpired(token) {
   return Date.now() >= payload.exp * 1000;
 }
 
+const SHARED_DOMAIN = 'abdullah-alaswad.link';
+
+// On the public domains the two frontends live on different subdomains, so a
+// host-only cookie would not cross. Scope it to the parent domain instead.
+// When accessed by IP, keep it host-only so it still works across ports.
+function cookieAttributes() {
+  const host = window.location.hostname;
+  const parts = ['path=/', 'SameSite=Lax'];
+
+  if (host === SHARED_DOMAIN || host.endsWith(`.${SHARED_DOMAIN}`)) {
+    parts.push(`Domain=${SHARED_DOMAIN}`);
+  }
+  if (window.location.protocol === 'https:') {
+    parts.push('Secure');
+  }
+
+  return parts.join('; ');
+}
+
 // Cookies are scoped to a host, not a port, so this is visible to the other
-// localhost frontends (e.g. the authors app on port 3002).
+// localhost frontends (e.g. the authors app on port 8088).
 export function publishSharedToken(token) {
   if (!token || isTokenExpired(token)) return;
 
@@ -31,7 +50,7 @@ export function publishSharedToken(token) {
       ? Math.max(1, payload.exp - Math.floor(Date.now() / 1000))
       : DEFAULT_MAX_AGE;
 
-  document.cookie = `${COOKIE_NAME}=${encodeURIComponent(token)}; path=/; max-age=${maxAge}; SameSite=Lax`;
+  document.cookie = `${COOKIE_NAME}=${encodeURIComponent(token)}; ${cookieAttributes()}; max-age=${maxAge}`;
 }
 
 export function readSharedToken() {
@@ -45,5 +64,5 @@ export function readSharedToken() {
 }
 
 export function clearSharedToken() {
-  document.cookie = `${COOKIE_NAME}=; path=/; max-age=0; SameSite=Lax`;
+  document.cookie = `${COOKIE_NAME}=; ${cookieAttributes()}; max-age=0`;
 }
