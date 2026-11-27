@@ -22,7 +22,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
         </Link>
         {(() => {
           let url = localStorage.getItem('authorUrl');
-          
+
           if (!url) {
             // Default: use the known domain
             url = AUTHORS_URL;
@@ -33,10 +33,10 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
               url = `http://${url}:8083`;
             }
           }
-          
+
           return (
-            <Link 
-              className="nav-link" 
+            <Link
+              className="nav-link"
               onClick={() => {
                 const currentHost = window.location.host;
                 localStorage.setItem('authorUrl', currentHost + ':8083');

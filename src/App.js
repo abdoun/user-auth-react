@@ -29,12 +29,7 @@ function PrivateRoute({ children, isLoggedIn }) {
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  return (
-    <>
-      <div className="alert alert-danger text-center mb-4" role="alert">
-        ⚠️ This is a demo application. Do NOT use or share any personal or sensitive data.
-      </div>
-      <Router>
+  useEffect(() => {
     let token = localStorage.getItem('token');
     const shared = readSharedToken();
 
@@ -83,6 +78,10 @@ export default function App() {
 
   return (
     <>
+      <div className="alert alert-danger text-center mb-4" role="alert">
+        ⚠️ This is a demo application. Do NOT use or share any personal or
+        sensitive data.
+      </div>
       <Router>
         <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <Routes>
