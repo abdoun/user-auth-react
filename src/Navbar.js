@@ -1,5 +1,6 @@
 import { logout } from './utils/auth';
 import { Link, useNavigate } from 'react-router-dom';
+import { AUTHORS_URL } from './utils/authConfig';
 
 export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
   const navigate = useNavigate();
@@ -19,6 +20,33 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
         <Link className="nav-link" to="/privacy">
           Privacy policy
         </Link>
+        {(() => {
+          let url = localStorage.getItem('authorUrl');
+          
+          if (!url) {
+            // Default: use the known domain
+            url = AUTHORS_URL;
+          } else {
+            // If it's an IP, try to map to domain format with :8083
+            const isIP = url.match(/^[\d.]+$/);
+            if (isIP) {
+              url = `http://${url}:8083`;
+            }
+          }
+          
+          return (
+            <Link 
+              className="nav-link" 
+              onClick={() => {
+                const currentHost = window.location.host;
+                localStorage.setItem('authorUrl', currentHost + ':8083');
+              }}
+            >
+              {url.includes(':8083') ? url.replace(/:8083$/, '') : url}
+              <i className="bi bi-person-lines-fill"></i>
+            </Link>
+          );
+        })()}
         {!isLoggedIn && (
           <>
             <Link className="nav-link" to="/register">
