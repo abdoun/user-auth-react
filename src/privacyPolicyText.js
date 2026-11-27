@@ -3,7 +3,7 @@ export const privacyPolicyText = {
     title: 'Privacy Policy',
     updated: 'Last updated: 27 November 2026',
     intro:
-      'This policy explains what personal data this sample application handles, why it is used, and what choices you have. It applies to the frontend at localhost:3001, the companion authentication frontend at localhost:3002, and the Node.js/MySQL backend they call.',
+      'This policy explains what personal data this sample application handles, why it is used, and what choices you have. It applies to this frontend, the companion authentication frontend, and the Node.js/MySQL backend they call.',
     languageLabel: 'Choose language',
     sections: [
       {
@@ -166,7 +166,7 @@ export const privacyPolicyText = {
     title: 'سياسة الخصوصية',
     updated: 'آخر تحديث: 27 نوفمبر 2026',
     intro:
-      'تشرح هذه السياسة بيانات الأشخاص التي يعالجها هذا التطبيق النموذجي، والسبب في استخدامها، والخيارات المتاحة لك. تنطبق على الواجهة أمام localhost:3001، وواجهة المصادقة المرافقة على localhost:3002، وخادم Node.js/MySQL الذي تستدعيانه.',
+      'تشرح هذه السياسة بيانات الأشخاص التي يعالجها هذا التطبيق النموذجي، والسبب في استخدامها، والخيارات المتاحة لك. تنطبق على هذه الواجهة، وواجهة المصادقة المرافقة، وخادم Node.js/MySQL الذي تستدعيانه.',
     languageLabel: 'اختر اللغة',
     sections: [
       {
@@ -329,7 +329,7 @@ export const privacyPolicyText = {
     title: 'Datenschutzerklärung',
     updated: 'Zuletzt aktualisiert: 27. November 2026',
     intro:
-      'Diese Erklärung beschreibt, welche personenbezogenen Daten diese Beispielanwendung verarbeitet, warum sie verwendet werden und welche Auswahlmöglichkeiten Sie haben. Sie gilt für das Frontend unter localhost:3001, das begleitende Authentifizierungs-Frontend unter localhost:3002 und das von beiden genutzte Node.js/MySQL-Backend.',
+      'Diese Erklärung beschreibt, welche personenbezogenen Daten diese Beispielanwendung verarbeitet, warum sie verwendet werden und welche Auswahlmöglichkeiten Sie haben. Sie gilt für dieses Frontend, das begleitende Authentifizierungs-Frontend und das von beiden genutzte Node.js/MySQL-Backend.',
     languageLabel: 'Sprache wählen',
     sections: [
       {
@@ -492,7 +492,7 @@ export const privacyPolicyText = {
     title: 'Gizlilik Politikası',
     updated: 'Son güncelleme: 27 Kasım 2026',
     intro:
-      'Bu politika, bu örnek uygulamanın hangi kişisel verileri işlediğini, neden kullanıldığını ve hangi seçeneklerinize sahip olduğunuzu açıklar. localhost:3001 arayüzü, localhost:3002 üzerindeki kimlik doğrulama arayüzü ve bunların kullandığı Node.js/MySQL sunucusu için geçerlidir.',
+      'Bu politika, bu örnek uygulamanın hangi kişisel verileri işlediğini, neden kullanıldığını ve hangi seçeneklerinize sahip olduğunuzu açıklar. Bu arayüz, kimlik doğrulama arayüzü ve bunların kullandığı Node.js/MySQL sunucusu için geçerlidir.',
     languageLabel: 'Dil seçin',
     sections: [
       {
