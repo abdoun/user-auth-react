@@ -8,7 +8,7 @@ A React frontend sample for user authentication, built with [Create React App](h
 - Protected routes
 - Basic form validation
 - Responsive UI
-- Multilingual (English, Arabic, German, Turkish) privacy & cookie-consent dialog, with RTL support for Arabic
+- Multilingual (English, Arabic, German, Turkish) privacy policy and cookie notice, with RTL support for Arabic
 
 ## Backend
 
@@ -57,24 +57,27 @@ Open [http://localhost:3001](http://localhost:3001) in your browser.
 npm test
 ```
 
-## Cookie Consent
+## Privacy Policy & Cookie Notice
 
-On the first visit, a consent dialog asks visitors to accept all cookies, reject
-all non-essential categories, or choose per category (analytics, preferences,
-marketing). Strictly necessary storage is always active and cannot be disabled.
-The dialog is available in English, Arabic, German and Turkish — Arabic also
-switches the layout to RTL — and the choice is remembered in `localStorage`
-under `cookieConsent`. A persistent **Cookie settings** button
-lets visitors revisit and change their decision at any time.
+A multilingual privacy policy is available at `/privacy` and linked from the
+navbar. It describes the account, session, and preference data handled by this
+sample and is available in English, Arabic, German and Turkish (Arabic uses an
+RTL layout).
 
-The selected language is stored under `consentLanguage`. After any consent
-change, a `cookie-consent-change` window event is dispatched with the new
-preferences in `event.detail`, so other parts of the app can react to it:
+The app uses only strictly necessary storage, so the first-visit notice simply
+asks visitors to **Accept** or **Reject** it. No analytics or marketing
+categories exist. The answer is remembered in `localStorage` under
+`cookieConsent`, and a persistent **Cookie settings** button lets visitors
+review it and change their answer at any time.
+
+The selected language is stored under `consentLanguage` and shared between the
+notice and the privacy policy. After any answer, a `cookie-consent-change`
+window event is dispatched with the new record in `event.detail`:
 
 ```js
 window.addEventListener('cookie-consent-change', (event) => {
-  if (event.detail.analytics) {
-    // initialize analytics
+  if (event.detail?.accepted) {
+    // visitor accepted the notice
   }
 });
 ```

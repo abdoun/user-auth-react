@@ -16,6 +16,9 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
         User Auth React
       </Link>
       <div className="navbar-nav">
+        <Link className="nav-link" to="/privacy">
+          Privacy policy
+        </Link>
         {!isLoggedIn && (
           <>
             <Link className="nav-link" to="/register">

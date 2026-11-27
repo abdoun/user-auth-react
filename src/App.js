@@ -14,6 +14,7 @@ import Profile from './Profile';
 import Users from './Users';
 import Home from './Home';
 import CookieConsent from './CookieConsent';
+import PrivacyPolicy from './PrivacyPolicy';
 import { logout } from './utils/auth';
 import {
   isTokenExpired,
@@ -113,6 +114,7 @@ export default function App() {
               </PrivateRoute>
             }
           />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route
             path="*"
             element={<Navigate to={isLoggedIn ? '/profile' : '/login'} />}

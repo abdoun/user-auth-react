@@ -1,16 +1,12 @@
 export const CONSENT_STORAGE_KEY = 'cookieConsent';
 export const CONSENT_EVENT = 'cookie-consent-change';
-export const CONSENT_VERSION = 1;
+// Bumped because the consent record no longer stores per-category choices.
+export const CONSENT_VERSION = 2;
 
-export const OPTIONAL_CATEGORIES = ['analytics', 'preferences', 'marketing'];
-
-function normalize(selection) {
+function normalize(accepted) {
   return {
     version: CONSENT_VERSION,
-    necessary: true,
-    analytics: Boolean(selection && selection.analytics),
-    preferences: Boolean(selection && selection.preferences),
-    marketing: Boolean(selection && selection.marketing),
+    accepted: Boolean(accepted),
     timestamp: new Date().toISOString(),
   };
 }
@@ -21,10 +17,16 @@ export function getConsent() {
     if (!raw) return null;
 
     const parsed = JSON.parse(raw);
-    if (!parsed || parsed.version !== CONSENT_VERSION) return null;
+    if (
+      !parsed ||
+      parsed.version !== CONSENT_VERSION ||
+      typeof parsed.accepted !== 'boolean'
+    ) {
+      return null;
+    }
 
     return {
-      ...normalize(parsed),
+      ...normalize(parsed.accepted),
       timestamp: parsed.timestamp || null,
     };
   } catch {
@@ -32,8 +34,8 @@ export function getConsent() {
   }
 }
 
-export function saveConsent(selection) {
-  const consent = normalize(selection);
+export function saveConsent(accepted) {
+  const consent = normalize(accepted);
   localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(consent));
   window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: consent }));
   return consent;

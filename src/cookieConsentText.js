@@ -11,167 +11,66 @@ export const languageNames = {
 export const consentText = {
   en: {
     title: 'Your privacy matters',
-    settingsTitle: 'Cookie preferences',
     intro:
-      'We use cookies and similar storage to keep you signed in, remember your preferences, and understand how this app is used. You decide what to allow — strictly necessary storage is always on.',
-    note: 'You can change your choice at any time with the “Cookie settings” button.',
+      'We use only strictly necessary storage to keep you signed in, remember your language, and remember your answer to this notice. No analytics or marketing cookies are used.',
+    note: 'You can review this notice at any time with the “Cookie settings” button.',
+    privacyPolicy: 'Privacy policy',
     languageLabel: 'Choose language',
-    alwaysActive: 'Always active',
-    allow: 'Allow',
-    acceptAll: 'Accept all',
-    rejectNonEssential: 'Reject non-essential',
-    customize: 'Customize',
-    savePreferences: 'Save preferences',
-    back: 'Back',
+    accept: 'Accept',
+    reject: 'Reject',
     reopen: 'Cookie settings',
-    categories: [
-      {
-        id: 'necessary',
-        name: 'Strictly necessary',
-        description:
-          'Required for sign-in, security, and remembering your consent choice. These cannot be turned off.',
-      },
-      {
-        id: 'analytics',
-        name: 'Analytics',
-        description:
-          'Helps us see which pages are visited so we can improve the app.',
-      },
-      {
-        id: 'preferences',
-        name: 'Preferences',
-        description:
-          'Remembers choices such as your language and display settings.',
-      },
-      {
-        id: 'marketing',
-        name: 'Marketing',
-        description:
-          'Used to show relevant content and measure campaigns. Off by default.',
-      },
+    storage: [
+      'Sign-in session (jwt_token cookie and token in local storage)',
+      'Your language choice',
+      'Your answer to this notice',
     ],
   },
   ar: {
     title: 'خصوصيتك تهمنا',
-    settingsTitle: 'تفضيلات الكوكيز',
     intro:
-      'نستخدم الكوكيز ووسائل التخزين المشابهة لإبقائك مسجّل الدخول، وتذكّر تفضيلاتك، وفهم طريقة استخدام هذا التطبيق. أنت من يقرر ما يُسمح به، والعناصر الضرورية تعمل دائمًا.',
-    note: 'يمكنك تغيير اختيارك في أي وقت عبر زر «إعدادات الكوكيز».',
+      'نستخدم فقط التخزين الضروري تمامًا لإبقائك مسجّل الدخول، وتذكّر لغتك، وتذكّر إجابتك على هذا الإشعار. لا نستخدم كوكيز للتحليلات أو التسويق.',
+    note: 'يمكنك مراجعة هذا الإشعار في أي وقت عبر زر «إعدادات الكوكيز».',
+    privacyPolicy: 'سياسة الخصوصية',
     languageLabel: 'اختر اللغة',
-    alwaysActive: 'مفعّلة دائمًا',
-    allow: 'السماح',
-    acceptAll: 'قبول الكل',
-    rejectNonEssential: 'رفض غير الضروري',
-    customize: 'تخصيص',
-    savePreferences: 'حفظ التفضيلات',
-    back: 'رجوع',
+    accept: 'قبول',
+    reject: 'رفض',
     reopen: 'إعدادات الكوكيز',
-    categories: [
-      {
-        id: 'necessary',
-        name: 'ضرورية تمامًا',
-        description:
-          'مطلوبة لتسجيل الدخول والأمان وتذكّر اختيارك للكوكيز. لا يمكن إيقافها.',
-      },
-      {
-        id: 'analytics',
-        name: 'التحليلات',
-        description: 'تساعدنا على معرفة الصفحات الأكثر زيارة لتحسين التطبيق.',
-      },
-      {
-        id: 'preferences',
-        name: 'التفضيلات',
-        description: 'تتذكّر اختياراتك، مثل اللغة وإعدادات العرض.',
-      },
-      {
-        id: 'marketing',
-        name: 'التسويق',
-        description:
-          'تُستخدم لعرض محتوى ذي صلة وقياس فعالية الحملات. متوقّفة افتراضيًا.',
-      },
+    storage: [
+      'جلسة تسجيل الدخول (كوكي jwt_token وtoken في التخزين المحلي)',
+      'لغتك المختارة',
+      'إجابتك على هذا الإشعار',
     ],
   },
   de: {
     title: 'Ihre Privatsphäre ist uns wichtig',
-    settingsTitle: 'Cookie-Einstellungen',
     intro:
-      'Wir verwenden Cookies und ähnliche Speichermechanismen, um Sie angemeldet zu halten, Ihre Einstellungen zu merken und zu verstehen, wie diese App genutzt wird. Sie entscheiden, was erlaubt ist – unbedingt erforderliche Speicherung ist immer aktiv.',
-    note: 'Sie können Ihre Auswahl jederzeit über die Schaltfläche „Cookie-Einstellungen“ ändern.',
+      'Wir verwenden nur unbedingt erforderliche Speicherung, um Sie angemeldet zu halten, Ihre Sprache und Ihre Antwort auf diesen Hinweis zu merken. Es werden keine Analyse- oder Marketing-Cookies verwendet.',
+    note: 'Sie können diesen Hinweis jederzeit über die Schaltfläche „Cookie-Einstellungen“ aufrufen.',
+    privacyPolicy: 'Datenschutzerklärung',
     languageLabel: 'Sprache wählen',
-    alwaysActive: 'Immer aktiv',
-    allow: 'Erlauben',
-    acceptAll: 'Alle akzeptieren',
-    rejectNonEssential: 'Nicht notwendige ablehnen',
-    customize: 'Anpassen',
-    savePreferences: 'Einstellungen speichern',
-    back: 'Zurück',
+    accept: 'Akzeptieren',
+    reject: 'Ablehnen',
     reopen: 'Cookie-Einstellungen',
-    categories: [
-      {
-        id: 'necessary',
-        name: 'Unbedingt erforderlich',
-        description:
-          'Erforderlich für Anmeldung, Sicherheit und das Merken Ihrer Auswahl. Diese können nicht deaktiviert werden.',
-      },
-      {
-        id: 'analytics',
-        name: 'Analyse',
-        description:
-          'Hilft uns zu sehen, welche Seiten besucht werden, um die App zu verbessern.',
-      },
-      {
-        id: 'preferences',
-        name: 'Einstellungen',
-        description:
-          'Merkt sich Auswahlen wie Sprache und Anzeigeeinstellungen.',
-      },
-      {
-        id: 'marketing',
-        name: 'Marketing',
-        description:
-          'Wird für relevante Inhalte und zur Messung von Kampagnen verwendet. Standardmäßig deaktiviert.',
-      },
+    storage: [
+      'Anmeldesitzung (jwt_token-Cookie und token im lokalen Speicher)',
+      'Ihre Sprachwahl',
+      'Ihre Antwort auf diesen Hinweis',
     ],
   },
   tr: {
     title: 'Gizliliğiniz önemli',
-    settingsTitle: 'Çerez tercihleri',
     intro:
-      'Oturumunuzu açık tutmak, tercihlerinizi hatırlamak ve bu uygulamanın nasıl kullanıldığını anlamak için çerezler ve benzeri depolama yöntemleri kullanıyoruz. Neye izin verileceğine siz karar verirsiniz — kesinlikle gerekli depolama her zaman açıktır.',
-    note: 'Seçiminizi istediğiniz zaman “Çerez ayarları” düğmesiyle değiştirebilirsiniz.',
+      'Sizi oturumda tutmak, dilinizi ve bu bildirime verdiğiniz yanıtı hatırlamak için yalnızca kesinlikle gerekli depolama kullanıyoruz. Analiz veya pazarlama çerezi kullanılmıyor.',
+    note: 'Bu bildirimi istediğiniz zaman “Çerez ayarları” düğmesiyle görüntüleyebilirsiniz.',
+    privacyPolicy: 'Gizlilik politikası',
     languageLabel: 'Dil seçin',
-    alwaysActive: 'Her zaman açık',
-    allow: 'İzin ver',
-    acceptAll: 'Tümünü kabul et',
-    rejectNonEssential: 'Gereksiz olanları reddet',
-    customize: 'Özelleştir',
-    savePreferences: 'Tercihleri kaydet',
-    back: 'Geri',
+    accept: 'Kabul et',
+    reject: 'Reddet',
     reopen: 'Çerez ayarları',
-    categories: [
-      {
-        id: 'necessary',
-        name: 'Kesinlikle gerekli',
-        description:
-          'Oturum açma, güvenlik ve çerez tercihinizi hatırlamak için gereklidir. Kapatılamaz.',
-      },
-      {
-        id: 'analytics',
-        name: 'Analiz',
-        description:
-          'Uygulamayı iyileştirmek için hangi sayfaların ziyaret edildiğini görmemize yardımcı olur.',
-      },
-      {
-        id: 'preferences',
-        name: 'Tercihler',
-        description: 'Dil ve görüntü ayarları gibi seçimleri hatırlar.',
-      },
-      {
-        id: 'marketing',
-        name: 'Pazarlama',
-        description:
-          'İlgili içeriği göstermek ve kampanyaları ölçmek için kullanılır. Varsayılan olarak kapalıdır.',
-      },
+    storage: [
+      'Giriş oturumu (jwt_token çerezi ve yerel depolamada token)',
+      'Dil seçiminiz',
+      'Bu bildirime verdiğiniz yanıt',
     ],
   },
 };

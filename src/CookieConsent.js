@@ -1,52 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-  consentText,
-  languageNames,
-  LANGUAGES,
-  RTL_LANGUAGES,
-} from './cookieConsentText';
+import { consentText, languageNames, LANGUAGES } from './cookieConsentText';
 import { getConsent, saveConsent } from './utils/consent';
+import { detectLanguage, isRTL, saveLanguage } from './utils/language';
 import './CookieConsent.css';
-
-const LANGUAGE_STORAGE_KEY = 'consentLanguage';
-const ALL_ALLOWED = {
-  analytics: true,
-  preferences: true,
-  marketing: true,
-};
-
-function detectLanguage() {
-  try {
-    const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
-    if (LANGUAGES.includes(stored)) return stored;
-  } catch {
-    // Storage may be unavailable; fall back to the browser language.
-  }
-
-  if (typeof navigator !== 'undefined' && navigator.language) {
-    const browserLanguage = navigator.language.split(/[-_]/)[0].toLowerCase();
-    if (LANGUAGES.includes(browserLanguage)) return browserLanguage;
-  }
-  return 'en';
-}
 
 export default function CookieConsent() {
   const [consent, setConsent] = useState(getConsent);
   const [isOpen, setIsOpen] = useState(() => !consent);
   const [language, setLanguage] = useState(detectLanguage);
-  const [view, setView] = useState('notice');
-  const [draft, setDraft] = useState({});
   const dialogRef = useRef(null);
 
   const t = consentText[language];
-  const dir = RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
+  const dir = isRTL(language) ? 'rtl' : 'ltr';
 
   useEffect(() => {
-    try {
-      localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
-    } catch {
-      // Ignore storage errors; the choice still applies for this session.
-    }
+    saveLanguage(language);
   }, [language]);
 
   useEffect(() => {
@@ -60,7 +28,7 @@ export default function CookieConsent() {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
         event.preventDefault();
-        setView((current) => (current === 'settings' ? 'notice' : current));
+        setIsOpen(false);
         return;
       }
 
@@ -68,7 +36,7 @@ export default function CookieConsent() {
 
       const focusable = Array.from(
         dialogRef.current.querySelectorAll(
-          'button:not([disabled]), input:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+          'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
         )
       );
       if (!focusable.length) return;
@@ -93,25 +61,10 @@ export default function CookieConsent() {
     };
   }, [isOpen]);
 
-  function openSettings() {
-    setDraft({
-      analytics: Boolean(consent && consent.analytics),
-      preferences: Boolean(consent && consent.preferences),
-      marketing: Boolean(consent && consent.marketing),
-    });
-    setView('settings');
-    setIsOpen(true);
-  }
-
-  function commit(selection) {
-    const next = saveConsent(selection);
+  function commit(accepted) {
+    const next = saveConsent(accepted);
     setConsent(next);
-    setView('notice');
     setIsOpen(false);
-  }
-
-  function toggleCategory(id, checked) {
-    setDraft((current) => ({ ...current, [id]: checked }));
   }
 
   return (
@@ -151,7 +104,7 @@ export default function CookieConsent() {
                 ))}
               </div>
               <h2 className="cc-title" id="cc-title">
-                {view === 'settings' ? t.settingsTitle : t.title}
+                {t.title}
               </h2>
             </div>
 
@@ -160,129 +113,38 @@ export default function CookieConsent() {
                 {t.intro}
               </p>
 
-              {view === 'notice' ? (
-                <ul className="cc-summary">
-                  {t.categories.map((category) => (
-                    <li key={category.id}>
-                      <span className="cc-summary-dot" aria-hidden="true" />
-                      <span>{category.name}</span>
-                      {category.id === 'necessary' && (
-                        <span className="cc-always-active">
-                          {t.alwaysActive}
-                        </span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <div className="cc-categories">
-                  {t.categories.map((category) => {
-                    const titleId = `cc-category-${category.id}-title`;
-                    const descriptionId = `cc-category-${category.id}-description`;
-                    const isRequired = category.id === 'necessary';
+              <ul className="cc-summary">
+                {t.storage.map((item) => (
+                  <li key={item}>
+                    <span className="cc-summary-dot" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
 
-                    return (
-                      <div className="cc-category" key={category.id}>
-                        <div className="cc-category-copy">
-                          <h3 className="cc-category-title" id={titleId}>
-                            {category.name}
-                          </h3>
-                          <p
-                            className="cc-category-description"
-                            id={descriptionId}
-                          >
-                            {category.description}
-                          </p>
-                        </div>
-                        <div className="cc-category-control">
-                          {isRequired && (
-                            <span className="cc-always-active">
-                              {t.alwaysActive}
-                            </span>
-                          )}
-                          <label className="cc-switch">
-                            <input
-                              type="checkbox"
-                              checked={
-                                isRequired ? true : Boolean(draft[category.id])
-                              }
-                              disabled={isRequired}
-                              aria-labelledby={titleId}
-                              aria-describedby={descriptionId}
-                              onChange={(event) =>
-                                toggleCategory(
-                                  category.id,
-                                  event.target.checked
-                                )
-                              }
-                            />
-                            <span
-                              className="cc-switch-track"
-                              aria-hidden="true"
-                            >
-                              <span className="cc-switch-thumb" />
-                            </span>
-                          </label>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-
-              <p className="cc-note">{t.note}</p>
+              <p className="cc-note">
+                {t.note}{' '}
+                <a href="/privacy" lang={language}>
+                  {t.privacyPolicy}
+                </a>
+              </p>
             </div>
 
             <div className="cc-actions">
-              {view === 'notice' ? (
-                <>
-                  <button
-                    type="button"
-                    className="cc-btn cc-btn-ghost"
-                    onClick={openSettings}
-                  >
-                    {t.customize}
-                  </button>
-                  <button
-                    type="button"
-                    className="cc-btn cc-btn-outline"
-                    onClick={() => commit({})}
-                  >
-                    {t.rejectNonEssential}
-                  </button>
-                  <button
-                    type="button"
-                    className="cc-btn cc-btn-primary"
-                    onClick={() => commit(ALL_ALLOWED)}
-                  >
-                    {t.acceptAll}
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button
-                    type="button"
-                    className="cc-btn cc-btn-ghost"
-                    onClick={() => setView('notice')}
-                  >
-                    {t.back}
-                  </button>
-                  <button
-                    type="button"
-                    className="cc-btn cc-btn-outline"
-                    onClick={() => commit(ALL_ALLOWED)}
-                  >
-                    {t.acceptAll}
-                  </button>
-                  <button
-                    type="button"
-                    className="cc-btn cc-btn-primary"
-                    onClick={() => commit(draft)}
-                  >
-                    {t.savePreferences}
-                  </button>
-                </>
-              )}
+              <button
+                type="button"
+                className="cc-btn cc-btn-outline"
+                onClick={() => commit(false)}
+              >
+                {t.reject}
+              </button>
+              <button
+                type="button"
+                className="cc-btn cc-btn-primary"
+                onClick={() => commit(true)}
+              >
+                {t.accept}
+              </button>
             </div>
           </section>
         </div>
@@ -294,7 +156,7 @@ export default function CookieConsent() {
           className="cc-reopen"
           dir={dir}
           lang={language}
-          onClick={openSettings}
+          onClick={() => setIsOpen(true)}
         >
           <span aria-hidden="true">🍪</span>
           <span>{t.reopen}</span>
