@@ -82,6 +82,25 @@ window.addEventListener('cookie-consent-change', (event) => {
 });
 ```
 
+### Backend privacy notes
+
+The policy reflects the behaviour of the companion
+[user-auth-node-mysql](https://github.com/abdoun/user-auth-node-mysql) backend:
+
+- Passwords are hashed with `bcrypt` at cost 12; only the hash is stored, and
+  plaintext passwords are never logged or returned. Requests are rate limited
+  (5 logins / 10 registrations per 15 minutes). Because bcrypt handles only
+  72 bytes, keep passwords within that limit.
+- The JWT currently contains `name` and `email`. It is signed, not encrypted,
+  so minimize its payload (ideally `id` only) before any real deployment.
+- `GET` / `PUT` / `DELETE /users/:id` support access, rectification, and erasure
+  requests. There is no automatic retention/cleanup schedule yet.
+- HTTPS/HSTS must be enforced at the proxy, the sample MySQL volume is not
+  encrypted at rest, and log files should not be committed to a repository.
+
+These items are documented so the demo is not mistaken for a GDPR-compliant
+production service.
+
 ## Project Structure
 
 ```

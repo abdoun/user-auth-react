@@ -21,8 +21,15 @@ test('renders the policy in English with its sections', () => {
     screen.getByRole('heading', { name: 'Cookies and local storage' })
   ).toBeInTheDocument();
   expect(
+    screen.getByRole('heading', { name: 'Passwords and security' })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole('heading', { name: 'Limits of this sample' })
+  ).toBeInTheDocument();
+  expect(
     screen.getByText('jwt_token (cookie)', { selector: 'dt' })
   ).toBeInTheDocument();
+  expect(screen.getByText(/first 72 bytes/)).toBeInTheDocument();
 });
 
 test('switches language, switches to RTL for Arabic, and remembers it', () => {
