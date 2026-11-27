@@ -4,6 +4,8 @@ export const privacyPolicyText = {
     updated: 'Last updated: 27 November 2026',
     intro:
       'This policy explains what personal data this sample application handles, why it is used, and what choices you have. It applies to this frontend, the companion authentication frontend, and the Node.js/MySQL backend they call.',
+    notice:
+      'This is a demo application. Do not enter real or personal data — use test data only.',
     languageLabel: 'Choose language',
     sections: [
       {
@@ -167,6 +169,8 @@ export const privacyPolicyText = {
     updated: 'آخر تحديث: 27 نوفمبر 2026',
     intro:
       'تشرح هذه السياسة بيانات الأشخاص التي يعالجها هذا التطبيق النموذجي، والسبب في استخدامها، والخيارات المتاحة لك. تنطبق على هذه الواجهة، وواجهة المصادقة المرافقة، وخادم Node.js/MySQL الذي تستدعيانه.',
+    notice:
+      'هذا تطبيق تجريبي. لا تُدخل بيانات حقيقية أو شخصية — استخدم بيانات اختبار فقط.',
     languageLabel: 'اختر اللغة',
     sections: [
       {
@@ -330,6 +334,8 @@ export const privacyPolicyText = {
     updated: 'Zuletzt aktualisiert: 27. November 2026',
     intro:
       'Diese Erklärung beschreibt, welche personenbezogenen Daten diese Beispielanwendung verarbeitet, warum sie verwendet werden und welche Auswahlmöglichkeiten Sie haben. Sie gilt für dieses Frontend, das begleitende Authentifizierungs-Frontend und das von beiden genutzte Node.js/MySQL-Backend.',
+    notice:
+      'Dies ist eine Demo-Anwendung. Geben Sie keine echten oder personenbezogenen Daten ein – verwenden Sie nur Testdaten.',
     languageLabel: 'Sprache wählen',
     sections: [
       {
@@ -493,6 +499,8 @@ export const privacyPolicyText = {
     updated: 'Son güncelleme: 27 Kasım 2026',
     intro:
       'Bu politika, bu örnek uygulamanın hangi kişisel verileri işlediğini, neden kullanıldığını ve hangi seçeneklerinize sahip olduğunuzu açıklar. Bu arayüz, kimlik doğrulama arayüzü ve bunların kullandığı Node.js/MySQL sunucusu için geçerlidir.',
+    notice:
+      'Bu bir demo uygulamadır. Gerçek veya kişisel veri girmeyin — yalnızca test verisi kullanın.',
     languageLabel: 'Dil seçin',
     sections: [
       {

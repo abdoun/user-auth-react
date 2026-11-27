@@ -14,6 +14,8 @@ test('renders the policy in English with its sections', () => {
   expect(
     screen.getByRole('heading', { level: 1, name: 'Privacy Policy' })
   ).toBeInTheDocument();
+  const notice = screen.getByText(/do not enter real or personal data/i);
+  expect(notice).toHaveAttribute('role', 'note');
   expect(
     screen.getByRole('heading', { name: 'Data we collect' })
   ).toBeInTheDocument();

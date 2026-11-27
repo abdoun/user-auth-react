@@ -52,6 +52,11 @@
   line-height: 1.6;
 }
 
+.privacy-notice {
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+}
+
 .privacy-sections {
   margin-top: 2rem;
 }

@@ -41,6 +41,9 @@ export default function PrivacyPolicy() {
         <h1>{t.title}</h1>
         <p className="privacy-updated">{t.updated}</p>
         <p className="privacy-intro">{t.intro}</p>
+        <p className="alert alert-warning privacy-notice" role="note">
+          {t.notice}
+        </p>
       </header>
 
       <div className="privacy-sections">

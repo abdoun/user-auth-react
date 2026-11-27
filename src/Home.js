@@ -3,6 +3,10 @@ export default function Home() {
     <main className="container mt-5">
       <div className="mx-auto" style={{ maxWidth: '720px' }}>
         <h1 className="mb-3">User Auth React</h1>
+        <div className="alert alert-warning" role="alert">
+          This is a demo application. Do not enter real or personal data — use
+          test data only.
+        </div>
         <p className="lead">
           A React frontend sample for user authentication based on React JS
           connects to backend based on Node.js, MySql by express.js. It

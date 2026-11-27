@@ -2,6 +2,8 @@
 
 A React frontend sample for user authentication, built with [Create React App](https://github.com/facebook/create-react-app). It demonstrates registration, login, protected routes, and profile access using a Node.js API backed by MySQL.
 
+> **Demo only:** do not enter real or personal data. Use test data exclusively.
+
 ## Features
 
 - User registration and login
