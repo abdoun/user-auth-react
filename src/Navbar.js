@@ -2,8 +2,17 @@ import { logout } from './utils/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { AUTHORS_URL } from './utils/authConfig';
 
+// When browsing over a plain IP, the authors frontend lives on the sibling
+// port (8088); otherwise use the public domain.
+function getAuthorsUrl() {
+  const host = window.location.hostname;
+  const isIP = /^\d{1,3}(\.\d{1,3}){3}$/.test(host);
+  return isIP ? `http://${host}:8088/` : AUTHORS_URL;
+}
+
 export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
   const navigate = useNavigate();
+  const authorsUrl = getAuthorsUrl();
 
   const handleLogout = () => {
     logout();
@@ -12,68 +21,65 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
   };
 
   return (
-    <nav className="navbar navbar-expand navbar-light bg-light px-4">
-      <Link className="navbar-brand" to="/">
-        User Auth React
-      </Link>
-      <div className="navbar-nav">
-        <Link className="nav-link" to="/privacy">
-          Privacy policy
-        </Link>
-        {(() => {
-          let url = localStorage.getItem('authorUrl');
-
-          if (!url) {
-            // Default: use the known domain
-            url = AUTHORS_URL;
-          } else {
-            // If it's an IP, try to map to domain format with :8083
-            const isIP = url.match(/^[\d.]+$/);
-            if (isIP) {
-              url = `http://${url}:8083`;
-            }
-          }
-
-          return (
-            <Link
-              className="nav-link"
-              onClick={() => {
-                const currentHost = window.location.host;
-                localStorage.setItem('authorUrl', currentHost + ':8083');
-              }}
-            >
-              {url.includes(':8083') ? url.replace(/:8083$/, '') : url}
-              <i className="bi bi-person-lines-fill"></i>
-            </Link>
-          );
-        })()}
+    <header className="App-header">
+      <h1 className="App-brand">
+        <Link to="/">User Auth React</Link>
+      </h1>
+      <nav className="App-nav nav nav-pills justify-content-center">
+        <div className="nav-item">
+          <Link className="nav-link" to="/">
+            Home
+          </Link>
+        </div>
+        <div className="nav-item">
+          <Link className="nav-link" to="/privacy">
+            Privacy policy
+          </Link>
+        </div>
+        <div className="nav-item">
+          <a
+            className="nav-link"
+            href={authorsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Authors
+          </a>
+        </div>
         {!isLoggedIn && (
           <>
-            <Link className="nav-link" to="/register">
-              Register
-            </Link>
-            <Link className="nav-link" to="/login">
-              Login
-            </Link>
+            <div className="nav-item">
+              <Link className="nav-link" to="/register">
+                Register
+              </Link>
+            </div>
+            <div className="nav-item">
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
+            </div>
           </>
         )}
         {isLoggedIn && (
           <>
-            <Link className="nav-link" to="/profile">
-              Profile
-            </Link>
-            <Link className="nav-link" to="/users">
-              Users
-            </Link>
-            <button
-              className="btn btn-outline-danger btn-sm ms-3"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
+            <div className="nav-item">
+              <Link className="nav-link" to="/profile">
+                Profile
+              </Link>
+            </div>
+            <div className="nav-item">
+              <Link className="nav-link" to="/users">
+                Users
+              </Link>
+            </div>
+            <div className="nav-item">
+              <button className="nav-link" onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
           </>
         )}
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }
