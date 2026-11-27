@@ -17,7 +17,7 @@ export default function Profile() {
 
     const fetchProfile = async () => {
       try {
-        const res = await fetch('/profile', {
+        const res = await fetch('/api/profile', {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) {

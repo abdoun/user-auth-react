@@ -9,7 +9,7 @@ export default function Users() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/users?page=${page}`, {
+    fetch(`/api/users?page=${page}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },

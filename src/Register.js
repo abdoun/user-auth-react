@@ -17,7 +17,7 @@ export default function Register({ setIsLoggedIn }) {
 
     try {
       console.log('API request:', window.location.origin);
-      const res = await fetch('/register', {
+      const res = await fetch('/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
