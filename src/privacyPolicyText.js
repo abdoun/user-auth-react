@@ -118,7 +118,7 @@ export const privacyPolicyText = {
         id: 'sharing',
         heading: 'Sharing and third parties',
         paragraphs: [
-          'Account and sign-in data is sent only to the backend API at localhost:3000. The two local frontends share the sign-in cookie described above; no other party receives it.',
+          'Account and sign-in data is sent only to the backend API. The two local frontends share the sign-in cookie described above; no other party receives it.',
           'No analytics, advertising, or other third-party services are integrated in this sample.',
         ],
       },
@@ -281,7 +281,7 @@ export const privacyPolicyText = {
         id: 'sharing',
         heading: 'المشاركة وأطراف ثالثة',
         paragraphs: [
-          'تُرسل بيانات الحساب وتسجيل الدخول إلى واجهة الخادم على localhost:3000 فقط. وتتشارك الواجهتان المحليتان ملف تعريف الدخول المذكور أعلاه، ولا يصل إليه أي طرف آخر.',
+          'تُرسل بيانات الحساب وتسجيل الدخول إلى واجهة الخادم فقط. وتتشارك الواجهتان المحليتان ملف تعريف الدخول المذكور أعلاه، ولا يصل إليه أي طرف آخر.',
           'لا توجد خدمات تحليلات أو إعلانات أو خدمات أخرى من أطراف ثالثة مدمجة في هذا النموذج.',
         ],
       },
@@ -444,7 +444,7 @@ export const privacyPolicyText = {
         id: 'sharing',
         heading: 'Weitergabe und Drittanbieter',
         paragraphs: [
-          'Konto- und Anmeldedaten werden nur an die Backend-API unter localhost:3000 gesendet. Die beiden lokalen Frontends teilen das oben beschriebene Anmelde-Cookie; andere Empfänger gibt es nicht.',
+          'Konto- und Anmeldedaten werden nur an die Backend-API gesendet. Die beiden lokalen Frontends teilen das oben beschriebene Anmelde-Cookie; andere Empfänger gibt es nicht.',
           'Dieses Beispiel enthält keine Analyse-, Werbe- oder sonstigen Dienste von Drittanbietern.',
         ],
       },
@@ -607,7 +607,7 @@ export const privacyPolicyText = {
         id: 'sharing',
         heading: 'Paylaşım ve üçüncü taraflar',
         paragraphs: [
-          'Hesap ve giriş verileri yalnızca localhost:3000 adresindeki sunucu API’sine gönderilir. İki yerel arayüz yukarıda açıklanan giriş çerezini paylaşır; başka bir taraf almaz.',
+          'Hesap ve giriş verileri yalnızca sunucu API’sine gönderilir. İki yerel arayüz yukarıda açıklanan giriş çerezini paylaşır; başka bir taraf almaz.',
           'Bu örnekte analiz, reklam veya başka bir üçüncü taraf hizmeti yoktur.',
         ],
       },
