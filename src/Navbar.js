@@ -7,7 +7,8 @@ import { AUTHORS_URL } from './utils/authConfig';
 function getAuthorsUrl() {
   const host = window.location.hostname;
   const isIP = /^\d{1,3}(\.\d{1,3}){3}$/.test(host);
-  return isIP ? `http://${host}:8088/` : AUTHORS_URL;
+  const base = isIP ? `http://${host}:8088` : AUTHORS_URL;
+  return `${base.replace(/\/+$/, '')}/authors`;
 }
 
 export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
@@ -37,12 +38,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
           </Link>
         </div>
         <div className="nav-item">
-          <a
-            className="nav-link"
-            href={authorsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a className="nav-link" href={authorsUrl}>
             Authors
           </a>
         </div>
